@@ -1,0 +1,11 @@
+environment:
+  # can be: development, test, provision, production
+  env: 'development'
+  apVersion: '1'
+http:
+  host: 'localhost'
+  port: 3000
+security:
+  jwtSecret: 'jwt-secret-this-should-be-a-string-that-must-be-changed-in-production'
+  sessionJwtExpiresInSeconds: '30s'
+  refreshJwtExpiresInSeconds: '60s'

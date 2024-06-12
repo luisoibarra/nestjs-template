@@ -1,0 +1,14 @@
+### Login Request
+# @name login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "hash"
+}
+
+### Profile Request
+# @name profile
+GET http://localhost:3000/auth/profile
+Authorization: Bearer {{login.response.body.refreshToken}}
