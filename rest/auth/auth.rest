@@ -11,4 +11,15 @@ Content-Type: application/json
 ### Profile Request
 # @name profile
 GET http://localhost:3000/auth/profile
+Authorization: Bearer {{login.response.body.sessionToken}}
+
+### Profile Request
+# @name profile
+GET http://localhost:3000/user/register
 Authorization: Bearer {{login.response.body.refreshToken}}
+Content-Type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "hash"
+}

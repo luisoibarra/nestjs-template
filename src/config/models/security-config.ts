@@ -7,9 +7,17 @@ export class SecurityConfig {
 
   @IsString()
   @IsNotEmpty()
-  sessionJwtExpiresInSeconds: string;
+  sessionJwtExpiresInSeconds: number;
+
+  get sessionJwtExpiresInSecondsString(): string {
+    return `${this.refreshJwtExpiresInSeconds}s`;
+  }
 
   @IsString()
   @IsNotEmpty()
-  refreshJwtExpiresInSeconds: string;
+  refreshJwtExpiresInSeconds: number;
+
+  get refreshJwtExpiresInSecondsString(): string {
+    return `${this.refreshJwtExpiresInSeconds}s`;
+  }
 }

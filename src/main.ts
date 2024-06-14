@@ -10,6 +10,7 @@ import { HttpConfig } from './config/models/http-config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { EnvConfig } from './config/models/env-config';
 import { ConfigConstants } from './config/config-constants';
+import { CustomExceptionFilter } from './common/filters/custom-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -23,6 +24,10 @@ async function bootstrap() {
       ConfigConstants.ENVIRONMENT_KEY,
     )?.version,
   });
+
+  // Global Pipes \\
+  // Exception filter that converts the exception thrown to custom response
+  app.useGlobalFilters(new CustomExceptionFilter());
 
   // Global Pipes \\
   // Validates all incoming objects using class-validator
