@@ -1,6 +1,6 @@
 ### Login Request
 # @name login
-POST http://localhost:3000/auth/login
+POST http://localhost:3000/v1/auth/login
 Content-Type: application/json
 
 {
@@ -10,16 +10,18 @@ Content-Type: application/json
 
 ### Profile Request
 # @name profile
-GET http://localhost:3000/auth/profile
+GET http://localhost:3000/v1/auth/profile
 Authorization: Bearer {{login.response.body.sessionToken}}
 
-### Profile Request
+### Register
 # @name profile
-GET http://localhost:3000/user/register
-Authorization: Bearer {{login.response.body.refreshToken}}
+POST http://localhost:3000/v1/user/register
 Content-Type: application/json
 
 {
-  "email": "test@gmail.com",
-  "password": "hash"
+  "email": "test@test.com",
+  "username": "test@test.com",
+  "firstName": "Test",
+  "lastName": "Tester",
+  "password": "Test123!"
 }

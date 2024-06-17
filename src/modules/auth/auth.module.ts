@@ -12,11 +12,14 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { UserModule } from '../user/user.module';
 import { UserService } from '../user/services/user.service';
 import { LocalStrategy } from './strategies/local.strategy';
+import { HashService } from '../hash/services/hash.service';
+import { HashModule } from '../hash/hash.module';
 
 @Module({
   imports: [
     PassportModule,
     UserModule,
+    HashModule,
     AppConfigModule,
     JwtModule.registerAsync({
       imports: [AppConfigModule],
@@ -29,6 +32,7 @@ import { LocalStrategy } from './strategies/local.strategy';
   controllers: [AuthController],
   providers: [
     UserService,
+    HashService,
     AppConfigService,
     AuthService,
     AppJwtService,
