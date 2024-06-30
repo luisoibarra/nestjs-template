@@ -4,6 +4,8 @@ import { SecurityConfig } from '../models/security-config';
 import { ConfigConstants } from '../config-constants';
 import { EnvConfig } from '../models/env-config';
 import { HttpConfig } from '../models/http-config';
+import { TokenConfig } from '../models/token-config';
+import { EmailConfig } from '../models/email-config';
 
 @Injectable()
 export class AppConfigService {
@@ -22,5 +24,13 @@ export class AppConfigService {
 
   getHttpConfig(): HttpConfig {
     return this.get<HttpConfig>(ConfigConstants.HTTP_KEY)!;
+  }
+
+  getTokenConfig(): TokenConfig {
+    return this.get<TokenConfig>(ConfigConstants.TOKEN_KEY)!;
+  }
+
+  getEmailConfig(): EmailConfig {
+    return this.get<EmailConfig>(ConfigConstants.EMAIL_KEY)!;
   }
 }

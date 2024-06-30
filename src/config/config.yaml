@@ -5,7 +5,12 @@ environment:
 http:
   host: 'localhost'
   port: 3000
+  url: 'http://localhost:3000'
 security:
   jwtSecret: 'jwt-secret-this-should-be-a-string-that-must-be-changed-in-production'
   sessionJwtExpiresInSeconds: 30
   refreshJwtExpiresInSeconds: 60
+token:
+  defaultTokenExpirationInSeconds: 86400 # 1-day expiration time
+email:
+  from: 'no-reply@mail.com'

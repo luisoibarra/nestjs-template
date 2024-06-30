@@ -4,6 +4,6 @@ export class BaseException extends Error {
     public message: string,
     public stack?: string,
   ) {
-    super();
+    super(message);
   }
 }

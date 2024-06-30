@@ -11,10 +11,17 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { EnvConfig } from './config/models/env-config';
 import { ConfigConstants } from './config/config-constants';
 import { CustomExceptionFilter } from './common/filters/custom-exception.filter';
+import { MyLogger } from './logger/services/custom-logger.service';
+import { EndpointInterceptor } from './common/interceptors/endpoint.interceptor';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    bufferLogs: true, // All logs will be buffered until a custom logger is attached
+  });
   const configService = app.get(ConfigService);
+
+  // Config Logger \\
+  app.useLogger(await app.resolve(MyLogger));
 
   // Global Routing \\
   // URI Versioning /v1/...
@@ -35,6 +42,9 @@ async function bootstrap() {
 
   // Global Interceptors \\
   // Properly serialize classes according annotations
+  app.useGlobalInterceptors(
+    new EndpointInterceptor(await app.resolve(MyLogger)),
+  );
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   // Swagger Configuration \\

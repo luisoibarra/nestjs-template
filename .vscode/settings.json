@@ -1,0 +1,16 @@
+{
+    "rest-client.environmentVariables": {
+        "$shared": {
+            "version": "v1"
+        },
+        "local": {
+            "basepath": "http://localhost:3000",
+        },
+        "staging": {
+            "basepath": "http://localhost:3001",
+        },
+        "production": {
+            "basepath": "http://localhost:3002",
+        }
+    }
+}

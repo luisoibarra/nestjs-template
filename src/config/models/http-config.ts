@@ -1,4 +1,4 @@
-import { IsIP, IsNotEmpty, IsNumber, Max, Min } from 'class-validator';
+import { IsIP, IsNotEmpty, IsNumber, IsUrl, Max, Min } from 'class-validator';
 
 export class HttpConfig {
   @IsNumber()
@@ -9,4 +9,8 @@ export class HttpConfig {
   @IsIP()
   @IsNotEmpty()
   host: string;
+
+  @IsUrl()
+  @IsNotEmpty()
+  url: string;
 }

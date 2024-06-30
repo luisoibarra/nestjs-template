@@ -1,0 +1,52 @@
+# Variables
+
+@fileVarTest = v1
+
+
+### Login Request
+# @name login
+POST {{basepath}}/{{version}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "Test123!"
+}
+
+### Register
+# @name register
+POST {{basepath}}/{{version}}/user/register
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "userName": "test@test.com",
+  "firstName": "Test",
+  "lastName": "Tester",
+  "password": "Test123!"
+}
+
+### Register
+# @name verifyEmail
+GET {{basepath}}/{{version}}/user/verify-email?token=ae4f05e96b3d146548ee43a17379dcb76e154aad1d8068a48310559ab870c231
+Content-Type: application/json
+
+### Password Recovery
+# @name passwordRecovery
+POST {{basepath}}/{{version}}/user/password-recovery
+Content-Type: application/json
+
+{
+  "email": "test@test.com"
+}
+
+
+### Validate Password Recovery
+# @name passwordRecovery
+PUT {{basepath}}/{{version}}/user/password-recovery
+Content-Type: application/json
+
+{
+  "token": "6ce9b25dd46b15fb929a7abddaf20984c334accbb51cb0eaac4ae33137375259",
+  "password": "Test123!!"
+}

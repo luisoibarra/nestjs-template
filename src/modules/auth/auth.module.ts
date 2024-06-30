@@ -14,12 +14,18 @@ import { UserService } from '../user/services/user.service';
 import { LocalStrategy } from './strategies/local.strategy';
 import { HashService } from '../hash/services/hash.service';
 import { HashModule } from '../hash/hash.module';
+import { EmailModule } from '../email/email.module';
+import { EmailTemplateService } from '../email/services/email-template.service';
+import { TokenService } from '../token/services/token.service';
+import { TokenModule } from '../token/token.module';
 
 @Module({
   imports: [
     PassportModule,
     UserModule,
     HashModule,
+    EmailModule,
+    TokenModule,
     AppConfigModule,
     JwtModule.registerAsync({
       imports: [AppConfigModule],
@@ -33,8 +39,9 @@ import { HashModule } from '../hash/hash.module';
   providers: [
     UserService,
     HashService,
-    AppConfigService,
     AuthService,
+    EmailTemplateService,
+    TokenService,
     AppJwtService,
     LocalStrategy,
     JwtStrategy,

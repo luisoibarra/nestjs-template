@@ -1,27 +1,14 @@
 ### Login Request
 # @name login
-POST http://localhost:3000/v1/auth/login
-Content-Type: application/json
-
-{
-  "email": "test@gmail.com",
-  "password": "hash"
-}
-
-### Profile Request
-# @name profile
-GET http://localhost:3000/v1/auth/profile
-Authorization: Bearer {{login.response.body.sessionToken}}
-
-### Register
-# @name profile
-POST http://localhost:3000/v1/user/register
+POST {{basepath}}/{{version}}/auth/login
 Content-Type: application/json
 
 {
   "email": "test@test.com",
-  "username": "test@test.com",
-  "firstName": "Test",
-  "lastName": "Tester",
   "password": "Test123!"
 }
+
+### Profile Request
+# @name profile
+GET {{basepath}}/{{version}}/auth/profile
+Authorization: Bearer {{login.response.body.sessionToken}}

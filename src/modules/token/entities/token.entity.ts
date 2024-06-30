@@ -1,26 +1,19 @@
 import { Exclude } from 'class-transformer';
-import { IsEmail } from 'class-validator';
 import { ITraceable } from 'src/common/interfaces/traceable';
 
-export class User implements ITraceable {
+export class Token implements ITraceable {
+  @Exclude()
   id: string;
-
-  firstName: string;
-
-  lastName: string;
-
-  @IsEmail()
-  email: string;
-
+  token: string;
   @Exclude()
-  passwordHash: string;
-
+  userId: string;
   @Exclude()
-  emailVerified: boolean;
-
+  payload: string;
+  @Exclude()
+  active: boolean;
+  expires: Date;
   @Exclude()
   createdAt: Date | undefined;
-
   @Exclude()
   updatedAt: Date | undefined;
 }

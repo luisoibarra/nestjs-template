@@ -18,7 +18,7 @@ export class AuthService {
     if (user == undefined || !user) {
       throw new UnauthorizedException();
     }
-    if (!this.hashService.isMatch(pass, user.passwordHash)) {
+    if (!(await this.hashService.isMatch(pass, user.passwordHash))) {
       throw new UnauthorizedException();
     }
 
@@ -40,17 +40,18 @@ export class AuthService {
 
   async validateUser(email: string, password: string) {
     const user = await this.usersService.findByEmail(email);
-    if (user?.passwordHash !== password) {
+    if (
+      !user ||
+      !(await this.hashService.isMatch(password, user.passwordHash))
+    ) {
       throw new UnauthorizedException();
     }
     return user;
   }
 
-  async refreshToken(
-    payload: TokenPayloadDto,
-    refreshSessionTokenInfo: boolean,
-    refreshRefreshTokenInfo: boolean,
-  ): Promise<LoginResponseDto> {
+  async refreshToken(payload: TokenPayloadDto): Promise<LoginResponseDto> {
+    const refreshSessionTokenInfo: boolean = true;
+    const refreshRefreshTokenInfo: boolean = true;
     if (payload.refresh) {
       if (!payload.email) {
         throw new UnauthorizedException('Missing information in token payload');
