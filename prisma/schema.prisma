@@ -42,5 +42,5 @@ model EmailTemplate {
   id           String @id @default(uuid())
   templateName String
   subject      String
-  template     String
+  template     String @db.LongText
 }
