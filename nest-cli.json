@@ -11,7 +11,7 @@
       {
         "watchAssets": true,
         "include": "config/*.yaml",
-        "outDir": "./dist/"
+        "outDir": "./dist/src"
       }
     ]
   }
