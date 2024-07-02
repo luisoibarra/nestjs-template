@@ -8,6 +8,11 @@ Content-Type: application/json
   "password": "Test123!"
 }
 
+### Refresh Request
+# @name refresh
+GET {{basepath}}/{{version}}/auth/refresh
+Authorization: Bearer {{login.response.body.sessionToken}}
+
 ### Profile Request
 # @name profile
 GET {{basepath}}/{{version}}/auth/profile

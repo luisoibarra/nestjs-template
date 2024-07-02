@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AppConfigService } from 'src/config/services/app-config.service';
 import { User } from 'src/modules/user/entities/user.entity';
-import { TokenPayloadDto } from '../dtos/token-payload.dto';
+import { AuthTokenPayloadDto } from '../dtos/auth-token-payload.dto';
 
 @Injectable()
 export class AppJwtService {
@@ -11,7 +11,7 @@ export class AppJwtService {
     private appConfig: AppConfigService,
   ) {}
 
-  defaultPayload(user: User, refresh: boolean): TokenPayloadDto {
+  defaultPayload(user: User, refresh: boolean): AuthTokenPayloadDto {
     return {
       sub: user.id,
       email: user.email,
@@ -20,7 +20,7 @@ export class AppJwtService {
   }
 
   async getRefreshToken(
-    payload: TokenPayloadDto,
+    payload: AuthTokenPayloadDto,
   ): Promise<{ token: string; expiresIn: Date }> {
     const config = this.appConfig.getSecurityConfig();
     return {
@@ -34,7 +34,7 @@ export class AppJwtService {
   }
 
   async getSessionToken(
-    payload: TokenPayloadDto,
+    payload: AuthTokenPayloadDto,
   ): Promise<{ token: string; expiresIn: Date }> {
     const config = this.appConfig.getSecurityConfig();
     return {

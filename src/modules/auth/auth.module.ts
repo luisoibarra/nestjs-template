@@ -18,6 +18,7 @@ import { EmailModule } from '../email/email.module';
 import { EmailTemplateService } from '../email/services/email-template.service';
 import { TokenService } from '../token/services/token.service';
 import { TokenModule } from '../token/token.module';
+import { RolesGuard as RoleGuard } from './guards/role.guard';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { TokenModule } from '../token/token.module';
     }),
   ],
   controllers: [AuthController],
+  exports: [RoleGuard],
   providers: [
     UserService,
     HashService,
@@ -47,6 +49,7 @@ import { TokenModule } from '../token/token.module';
     JwtStrategy,
     // Register JwtAuthGuard globally to all controllers
     { provide: APP_GUARD, useClass: JwtAuthGuard },
+    RoleGuard,
   ],
 })
 export class AuthModule {}

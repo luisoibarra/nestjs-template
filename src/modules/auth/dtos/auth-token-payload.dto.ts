@@ -1,4 +1,4 @@
-export interface TokenPayloadDto {
+export class AuthTokenPayloadDto {
   // Common JWT Claims
 
   // Identifies the subject of the JWT. This is usually the user ID.
@@ -17,4 +17,5 @@ export interface TokenPayloadDto {
   // Custom Common Claims
   email?: string;
   refresh: boolean; // If is refresh token
+  permissions?: string[];
 }

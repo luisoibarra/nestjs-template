@@ -1,13 +1,19 @@
 import { Exclude } from 'class-transformer';
 import { ITraceable } from 'src/common/interfaces/traceable';
+import { Permission } from './permission.entity';
 
-export class EmailTemplate implements ITraceable {
+export class UserPermission implements ITraceable {
   id: string;
-  templateName: string;
-  subject: string;
-  template: string;
+
+  userId: string;
+
+  permissionId: string;
+
+  permission: Permission;
+
   @Exclude()
   createdAt: Date | undefined;
+
   @Exclude()
   updatedAt: Date | undefined;
 }

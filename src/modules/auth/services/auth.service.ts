@@ -3,7 +3,7 @@ import { UserService } from 'src/modules/user/services/user.service';
 import { LoginResponseDto } from '../dtos/login-response.dto';
 import { AppJwtService } from './app-jwt.service';
 import { HashService } from 'src/modules/hash/services/hash.service';
-import { TokenPayloadDto } from '../dtos/token-payload.dto';
+import { AuthTokenPayloadDto } from '../dtos/auth-token-payload.dto';
 
 @Injectable()
 export class AuthService {
@@ -49,7 +49,7 @@ export class AuthService {
     return user;
   }
 
-  async refreshToken(payload: TokenPayloadDto): Promise<LoginResponseDto> {
+  async refreshToken(payload: AuthTokenPayloadDto): Promise<LoginResponseDto> {
     const refreshSessionTokenInfo: boolean = true;
     const refreshRefreshTokenInfo: boolean = true;
     if (payload.refresh) {
