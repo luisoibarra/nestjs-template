@@ -22,7 +22,7 @@ async function bootstrap() {
 
   // Config Logger \\
   app.useLogger(await app.resolve(MyLogger));
-
+  app.enableCors();
   // Global Routing \\
   // URI Versioning /v1/...
   app.enableVersioning({
